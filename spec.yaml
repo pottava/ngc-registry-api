@@ -1,0 +1,51 @@
+swagger: '2.0'
+info:
+  title: ngc-registry-api
+  version: 1.0.0
+  description: |
+    NVIDIA GPU Cloud Registry API
+consumes:
+  - application/json
+produces:
+  - application/json
+schemes:
+  - http
+host: 'localhost:9000'
+basePath: /api/v1
+paths:
+  /repositories:
+    get:
+      description: |
+        returns NGC repositories
+      operationId: getRepositories
+      tags:
+        - repository
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Repository'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  Repository:
+    description: docker image information
+    required:
+      - repoTag
+    properties:
+      repoTag:
+        description: the image name/tag
+        type: string
+  Error:
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: string
+      message:
+        type: string

@@ -12,7 +12,9 @@ import (
 
 // Routes set API handlers
 func Routes(api *operations.NgcRegistryAPI) {
+	authRoute(api)
 	repositoryRoute(api)
+	imageRoute(api)
 }
 
 func newerror(code int) *models.Error {

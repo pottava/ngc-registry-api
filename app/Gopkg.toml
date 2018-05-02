@@ -1,5 +1,9 @@
 
 [[constraint]]
+  name = "github.com/dgrijalva/jwt-go"
+  version = "3.2.0"
+
+[[constraint]]
   branch = "master"
   name = "github.com/go-openapi/errors"
 
@@ -38,6 +42,10 @@
 [[constraint]]
   name = "github.com/tylerb/graceful"
   version = "1.2.15"
+
+[[constraint]]
+  name = "gopkg.in/resty.v1"
+  version = "1.4.0"
 
 [prune]
   go-tests = true

@@ -20,6 +20,12 @@
   version = "v9"
 
 [[projects]]
+  name = "github.com/dgrijalva/jwt-go"
+  packages = ["."]
+  revision = "06ea1031745cb8b3dab3f6a236daf2b0aa468b7e"
+  version = "v3.2.0"
+
+[[projects]]
   name = "github.com/docker/go-units"
   packages = ["."]
   revision = "47565b4f722fb6ceae66b95f853feed578a4a51c"
@@ -133,7 +139,8 @@
   name = "golang.org/x/net"
   packages = [
     "context",
-    "idna"
+    "idna",
+    "publicsuffix"
   ]
   revision = "5f9ae10d9af5b1c89ae6904293b14b064d4ada23"
 
@@ -169,6 +176,12 @@
   revision = "3f83fa5005286a7fe593b055f0d7771a7dce4655"
 
 [[projects]]
+  name = "gopkg.in/resty.v1"
+  packages = ["."]
+  revision = "f8815663de1e64d57cdd4ee9e2b2fa96977a030e"
+  version = "v1.4"
+
+[[projects]]
   name = "gopkg.in/yaml.v2"
   packages = ["."]
   revision = "5420a8b6744d3b0345ab293f6fcba19c978f1183"
@@ -177,6 +190,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "442d5684668187350b4b62c8c6d2b92b58635b75b540d507045446aa693da46d"
+  inputs-digest = "591cb07ea738a385de763e785bca66024f5883785e52e26349828dd92f430cc5"
   solver-name = "gps-cdcl"
   solver-version = 1

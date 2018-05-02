@@ -6,8 +6,7 @@ import (
 
 // Config can be set via environment variables
 type config struct {
-	APIEndpoint string `envconfig:"API_ENDPOINT" default:"http://localhost:9000"`
-	AccessLog   bool   `envconfig:"ACCESS_LOG" default:"true"`
+	AccessLog bool `envconfig:"ACCESS_LOG" default:"true"`
 }
 
 // Config represents its configurations

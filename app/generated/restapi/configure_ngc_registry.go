@@ -37,6 +37,11 @@ func configureAPI(api *operations.NgcRegistryAPI) http.Handler {
 
 	controllers.Routes(api)
 
+	// Applies when the "Authorization" header is set
+	api.JwtAuthorizerAuth = func(token string) (*lib.Principal, error) {
+		return lib.RequestToPrincipal(token)
+	}
+
 	api.ServerShutdown = func() {}
 
 	return setupGlobalMiddleware(api.Serve(setupMiddlewares))

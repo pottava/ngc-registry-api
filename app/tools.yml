@@ -4,7 +4,7 @@ services:
   # docker-compose -f app/tools.yml run --rm codegen
   codegen:
     image: supinf/go-swagger:0.13.0
-    command: generate server -f spec.yaml -t app/generated
+    command: generate server -P lib.Principal -f spec.yaml -t app/generated
     volumes:
       - ..:/go/src/github.com/pottava/ngc-registry-api
     working_dir: /go/src/github.com/pottava/ngc-registry-api

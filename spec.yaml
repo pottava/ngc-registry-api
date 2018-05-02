@@ -12,7 +12,65 @@ schemes:
   - http
 host: 'localhost:9000'
 basePath: /api/v1
+securityDefinitions:
+  jwt-authorizer:
+    name: Authorization
+    type: apiKey
+    in: header
 paths:
+  /signin:
+    post:
+      description: |
+        Signin to NGC web console
+      operationId: signin
+      tags:
+        - auth
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            title: AccountInfo
+            type: object
+            required:
+              - email
+              - password
+            properties:
+              email:
+                description: E-mail address
+                type: string
+                format: email
+              password:
+                description: Password
+                type: string
+                format: password
+      responses:
+        '201':
+          description: OK
+          schema:
+            $ref: '#/definitions/Session'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /me:
+    get:
+      description: |
+        returns user information
+      operationId: getMyInfo
+      tags:
+        - auth
+      security:
+        - jwt-authorizer: []
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/User'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
   /repositories:
     get:
       description: |
@@ -20,6 +78,8 @@ paths:
       operationId: getRepositories
       tags:
         - repository
+      security:
+        - jwt-authorizer: []
       responses:
         '200':
           description: OK
@@ -31,15 +91,98 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/Error'
+  /repositories/{namespace}/{id}/images:
+    get:
+      description: |
+        returns NGC images
+      operationId: getImages
+      tags:
+        - image
+      security:
+        - jwt-authorizer: []
+      parameters:
+        - name: namespace
+          in: path
+          description: Docker repositry namespace
+          type: string
+          required: true
+        - name: id
+          in: path
+          description: Docker image name
+          type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Image'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
 definitions:
+  Session:
+    description: session information
+    required:
+      - jwt
+    properties:
+      jwt:
+        description: JSON Web Token
+        type: string
+  User:
+    description: user information
+    required:
+      - id
+    properties:
+      id:
+        description: User ID
+        type: integer
+        format: int64
+      name:
+        description: User name
+        type: string
+      email:
+        description: User e-mail address
+        type: string
+        format: email
+      org:
+        description: Organization name
+        type: string
+      created:
+        description: created datetime
+        type: string
+        format: date-time
+      lastLogin:
+        description: last logined datetime
+        type: string
+        format: date-time
   Repository:
+    description: docker repositry information
+    required:
+      - namespace
+      - name
+    properties:
+      namespace:
+        description: the repositry's namespace
+        type: string
+      name:
+        description: the image name
+        type: string
+  Image:
     description: docker image information
     required:
-      - repoTag
+      - tag
+      - size
     properties:
-      repoTag:
-        description: the image name/tag
+      tag:
+        description: the image tag
         type: string
+      size:
+        description: the image size
+        type: integer
+        format: int64
   Error:
     required:
       - code

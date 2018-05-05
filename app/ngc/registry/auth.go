@@ -48,7 +48,7 @@ func cookie(session string) *http.Cookie {
 		Name:     "SessionToken",
 		Value:    session,
 		Path:     "/",
-		Domain:   "api.ngc.nvidia.com",
+		Domain:   host,
 		MaxAge:   36000,
 		HttpOnly: true,
 		Secure:   true,

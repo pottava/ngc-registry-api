@@ -10,14 +10,29 @@ import (
 	"gopkg.in/resty.v1"
 )
 
+var (
+	host = "api.ngc.nvidia.com"
+)
+
 func init() {
 	resty.
 		SetDebug(false).
-		SetHostURL("https://api.ngc.nvidia.com").
+		SetHostURL(fmt.Sprintf("https://%s", host)).
 		SetRESTMode().
 		SetRetryCount(3).
 		SetRetryWaitTime(100 * time.Millisecond).
 		SetRetryMaxWaitTime(1 * time.Second)
+}
+
+// Debug makes HTTP requests debug mode
+func Debug(debug bool) {
+	resty.SetDebug(debug)
+}
+
+// SetAPIHost change its host name
+func SetAPIHost(hostname string) {
+	resty.SetHostURL(fmt.Sprintf("https://%s", hostname))
+	host = hostname
 }
 
 // Login to NGC web console

@@ -37,9 +37,6 @@ func ParseJWT(token string) (*jwt.Token, *Claims, error) {
 	if !ok {
 		return nil, nil, fmt.Errorf("Couldn't parse as standard claims")
 	}
-	if err = claims.Valid(); err != nil {
-		return nil, nil, err
-	}
 	return parsed, claims, nil
 }
 

@@ -12,7 +12,7 @@ func Wrap(handler http.Handler) http.Handler {
 		proc := time.Now()
 		handler.ServeHTTP(w, r)
 		if Config.AccessLog {
-			log.Printf("[%s] %.3f %s %s", r.RemoteAddr, time.Now().Sub(proc).Seconds(), r.Method, r.URL)
+			log.Printf("[%s] %.3f %s %s", r.RemoteAddr, time.Since(proc).Seconds(), r.Method, r.URL)
 		}
 	})
 }

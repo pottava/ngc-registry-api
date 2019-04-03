@@ -1,2 +1,2 @@
-FROM pottava/golang:1.10-builder
-RUN apk --no-cache add ca-certificates
+FROM golang:1.12.1-alpine3.9
+RUN apk --no-cache add g++ ca-certificates

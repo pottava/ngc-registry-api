@@ -30,7 +30,7 @@ func getRepositories(_ repository.GetRepositoriesParams, auth *lib.Principal) mi
 		code := http.StatusBadRequest
 		return repository.NewGetRepositoriesDefault(code).WithPayload(newerror(code))
 	}
-	result := models.GetRepositoriesOKBody{}
+	result := []*models.Repository{}
 	for _, repositry := range repositries {
 		result = append(result, &models.Repository{
 			Namespace: swag.String(repositry.Namespace),

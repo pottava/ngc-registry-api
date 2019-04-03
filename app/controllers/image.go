@@ -24,7 +24,7 @@ func getImages(params image.GetImagesParams, auth *lib.Principal) middleware.Res
 		code := http.StatusBadRequest
 		return image.NewGetImagesDefault(code).WithPayload(newerror(code))
 	}
-	result := models.GetImagesOKBody{}
+	result := []*models.Image{}
 	for _, image := range images {
 		result = append(result, &models.Image{
 			Tag:  swag.String(image.Tag),

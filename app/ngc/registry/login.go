@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/go-openapi/swag"
-	"gopkg.in/resty.v1"
+	resty "gopkg.in/resty.v1"
 )
 
 var (
@@ -39,6 +39,10 @@ func SetAPIHost(hostname string) {
 func Login(email, password string) (token *string, err error) {
 	resp, err := resty.R().
 		SetBasicAuth(email, password).
+		SetHeaders(map[string]string{
+			"Referer":      "https://ngc.nvidia.com",
+			"Content-Type": "application/json",
+		}).
 		SetResult(&loginResult{}).
 		Post("/login")
 	if err != nil {

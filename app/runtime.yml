@@ -3,7 +3,7 @@ version: "2.1"
 services:
   # docker-compose -f app/runtime.yml up
   api:
-    image: ngc-registry-api/api:20180502
+    image: ngc-registry-api/go:20190403
     build: .
     command: go run generated/cmd/ngc-registry-server/main.go --host 0.0.0.0 --port 9000
     ports:
@@ -14,7 +14,7 @@ services:
     container_name: api
 
   gulp:
-    image: ngc-registry-api/gulp:20180502
+    image: ngc-registry-api/gulp:20190403
     build: ../gulp
     volumes:
       - .:/monitor

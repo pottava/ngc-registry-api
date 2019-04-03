@@ -29,7 +29,7 @@ func signin(params auth.SigninParams) middleware.Responder {
 	}
 	encoded := base64.URLEncoding.EncodeToString([]byte(swag.StringValue(session)))
 	return auth.NewSigninCreated().WithPayload(&models.Session{
-		Jwt: swag.String(string(encoded)),
+		Jwt: swag.String(encoded),
 	})
 }
 

@@ -11,7 +11,7 @@ import (
 )
 
 // Routes set API handlers
-func Routes(api *operations.NgcRegistryAPI) {
+func Routes(api *operations.NgcRegistryAPIAPI) {
 	authRoute(api)
 	repositoryRoute(api)
 	imageRoute(api)

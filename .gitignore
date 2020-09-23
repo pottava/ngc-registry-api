@@ -1,6 +1,6 @@
 app/generated/cmd
 app/generated/models
 app/generated/restapi/*
-!app/generated/restapi/configure_ngc_registry.go
+!app/generated/restapi/configure_ngc_registry_api.go
 app/vendor
 dist

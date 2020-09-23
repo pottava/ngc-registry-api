@@ -8,14 +8,14 @@ import (
 	"github.com/go-openapi/runtime/middleware"
 	"github.com/go-openapi/strfmt"
 	"github.com/go-openapi/swag"
+	"github.com/pottava/ngc-registry-api/app/generated/lib"
 	"github.com/pottava/ngc-registry-api/app/generated/models"
 	"github.com/pottava/ngc-registry-api/app/generated/restapi/operations"
 	"github.com/pottava/ngc-registry-api/app/generated/restapi/operations/auth"
-	"github.com/pottava/ngc-registry-api/app/lib"
 	"github.com/pottava/ngc-registry-api/app/ngc/registry"
 )
 
-func authRoute(api *operations.NgcRegistryAPI) {
+func authRoute(api *operations.NgcRegistryAPIAPI) {
 	api.AuthSigninHandler = auth.SigninHandlerFunc(signin)
 	api.AuthGetMyInfoHandler = auth.GetMyInfoHandlerFunc(myself)
 }

@@ -7,7 +7,9 @@ You can retrieve repository / image information from NGC via simple REST API.
 ### Run API server
 
 ```console
-docker-compose -f app/tools.yml run --rm deps ensure
+pushd app
+go mod vendor
+popd
 docker-compose -f app/runtime.yml up
 ```
 

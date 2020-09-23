@@ -6,14 +6,14 @@ import (
 
 	"github.com/go-openapi/runtime/middleware"
 	"github.com/go-openapi/swag"
+	"github.com/pottava/ngc-registry-api/app/generated/lib"
 	"github.com/pottava/ngc-registry-api/app/generated/models"
 	"github.com/pottava/ngc-registry-api/app/generated/restapi/operations"
 	"github.com/pottava/ngc-registry-api/app/generated/restapi/operations/image"
-	"github.com/pottava/ngc-registry-api/app/lib"
 	"github.com/pottava/ngc-registry-api/app/ngc/registry"
 )
 
-func imageRoute(api *operations.NgcRegistryAPI) {
+func imageRoute(api *operations.NgcRegistryAPIAPI) {
 	api.ImageGetImagesHandler = image.GetImagesHandlerFunc(getImages)
 }
 
